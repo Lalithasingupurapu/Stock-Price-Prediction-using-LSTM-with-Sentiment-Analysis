@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexTrade | AI Stock Sentiment Predictor</title>
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-glob"></div>
+    <div class="background-glob glob-2"></div>
+    
+    <div class="container">
+        <header>
+            <h1>NexTrade <span>AI</span></h1>
+            <p>Advanced LSTM modeling combined with VADER sentiment analysis to predict market movements.</p>
+        </header>
+
+        <main class="dashboard">
+            <div class="glass-panel form-panel">
+                <h2>Prediction Parameters</h2>
+                <form id="prediction-form">
+                    <div class="input-group">
+                        <label for="ticker">Stock Ticker</label>
+                        <select id="ticker" required>
+                            <option value="TCS.NS" selected>Tata Consultancy (NSE) - TCS.NS</option>
+                            <option value="MSFT">Microsoft Corp. - MSFT</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="period">Date Range (Historical)</label>
+                        <select id="period" required>
+                            <option value="2y">2 Years</option>
+                            <option value="5y" selected>5 Years</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="predict-btn">
+                        <span class="btn-text">Generate Prediction</span>
+                        <div class="spinner hidden" id="loading-spinner"></div>
+                    </button>
+                    
+                    <div id="error-message" class="error-text hidden"></div>
+                </form>
+            </div>
+
+            <div class="glass-panel chart-panel">
+                <div class="chart-header">
+                    <h2>Prediction Results</h2>
+                    <span class="badge" id="chart-badge">Waiting for input</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
