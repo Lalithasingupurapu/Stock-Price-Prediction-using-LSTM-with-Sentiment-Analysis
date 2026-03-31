@@ -1,40 +1,85 @@
-# Stock Price Prediction using LSTM and Sentiment Analysis
+📈 Stock Price Prediction using LSTM with Sentiment Analysis
+📌 Overview
 
-This project demonstrates an implementation of a Long Short-Term Memory (LSTM) Neural Network predicting the stock price of Apple (`AAPL`) using both numerical (Historical `Close` Prices) and NLP-derived (Simulated Sentiment Scores) inputs.
+This project uses a Long Short-Term Memory (LSTM) neural network to predict stock prices by combining:
 
-It relies on TensorFlow, Keras, `yfinance` for fetching the historical prices, and uses NLTK VADER as a demonstration structure for parsing sentiment.
+Historical stock data
+Sentiment analysis (simulated using NLP techniques)
 
-## Important Note regarding Sentiment
-Real sentiment data fetched dynamically across several years generally requires a paid API for news scraping (e.g. Bloomberg API, Finnhub, or NewsAPI on a paid tier). To demonstrate a complete, running pipeline out-of-the-box, this script generates statistically-skewed sentiment placeholders for historical days, but integrates the **exact logic** you would use once you hook up a real news text scraper or API. 
+A Flask web application is also included to provide a user-friendly interface for predictions.
 
-## Getting Started
+⚙️ Tech Stack
+Python
+TensorFlow & Keras
+Flask
+NumPy, Pandas
+Matplotlib
+yfinance
+NLTK (VADER Sentiment Analysis)
+🚀 Features
+Predicts stock prices using LSTM model
+Combines time-series + sentiment data
+Web interface using Flask
+Data visualization (actual vs predicted prices)
+Easy to extend with real-time data
+⚠️ Note on Sentiment Data
 
-### 1. Prerequisites
-Ensure you have Python 3 installed. You'll need the libraries present in the requirements list.
+Real-world sentiment data requires paid APIs (like NewsAPI, Bloomberg).
+For demonstration, this project uses simulated sentiment values, but the structure supports real data integration.
 
-### 2. Installations
-You can install the necessary dependencies via:
-```bash
+🛠️ Installation
 pip install -r requirements.txt
-```
+▶️ How to Run
+🔹 Run Flask Web App
+python app.py
 
-*(Note for NLTK: The script will automatically download the `vader_lexicon` dictionary upon first execution)*
+👉 Open in browser:
+http://127.0.0.1:5000/
 
-### 3. Execution
-To train the model and generate a prediction chart, run:
-```bash
+🔹 Run LSTM Model (Optional)
 python stock_prediction_lstm.py
-```
+🔍 How It Works
+📊 Data Collection
+Fetches stock data using yfinance
+💬 Sentiment Analysis
+Uses VADER to generate sentiment scores (simulated)
+🔄 Preprocessing
+Scales data using MinMaxScaler
+Creates sequences (60-day window)
+🧠 Model Architecture
+2 LSTM layers (50 units)
+Dropout layers (0.2)
+Dense output layer
+📈 Output
+Generates prediction graph (prediction_plot.png)
+Displays results on web interface
+![Output](image.png)
 
-## How It Works
+📂 Project Structure
+Stock_Price_Prediction/
+│── app.py
+│── stock_prediction_lstm.py
+│── fetch_stock_data.py
+│── requirements.txt
+│── README.md
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   ├── script.js
+│   └── styles.css
 
-1. **Data Loading:** The script calls `yfinance.Ticker("AAPL").history(period="5y")` to get standard historical Open, High, Low, Close, and Volume details over the last 5 years.
-2. **Sentiment Generation:** An `add_sentiment_data` function populates each date with a Sentiment Compound Score. VADER usage is shown.
-3. **Preprocessing:** 
-   - Uses `MinMaxScaler` to scale Price and Sentiment fields between $0$ and $1$ to improve LSTM convergence.
-   - Restructures sequential 2D tabular data into a 3D matrix expected by `LSTM`, applying a Sequence Length (Lookback Window) of `60` days (i.e. we use the past 60 days to predict "tomorrows" price).
-4. **Model Architecture:**
-   - 2 LSTM layers structure with 50 units.
-   - 2 `Dropout` layers with a 0.2 rate strictly to prevent overfitting.
-   - 1 Dense layer to output the predicted next target value.
-5. **Evaluation:** The final predictions inverse-transform the scaler to bring the values identically scaling back to real prices (USD) and outputs a `prediction_plot.png` contrasting True Price vs Estimated Price.
+🔮 Future Improvements
+Integrate real-time news APIs
+Use advanced NLP models (BERT)
+Deploy as a live web app
+Improve prediction accuracy
+
+👩‍💻 Author
+
+Lalitha Singupurapu
+
+⭐ Conclusion
+
+This project shows how combining LSTM (Deep Learning) with Sentiment Analysis improves stock price prediction and provides a practical real-world application using Flask.
