@@ -68,7 +68,7 @@ python stock_prediction_lstm.py
 - Generates prediction graph (`prediction_plot.png`)
 - Displays results on web interface
 
-![Output](prediction_plot.png)
+![Output](image.png)
 
 ## 📂 Project Structure
 ```text
