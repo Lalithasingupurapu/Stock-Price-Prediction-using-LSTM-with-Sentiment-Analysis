@@ -5,3 +5,7 @@ scikit-learn
 torch
 yfinance
 nltk
+flask
+flask-cors
+requests
+gunicorn
